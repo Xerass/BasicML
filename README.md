@@ -56,7 +56,11 @@ conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvi
 # Then install others
 conda install matplotlib seaborn notebook
 ```
-
+## Models I use
+Some models i use are premade, you may find the ones that are externally downloaded through this google drive
+```bash
+https://drive.google.com/drive/folders/1JaSLUbTYYAylxeb89E48jP7BJJI5WQ6D?usp=sharing
+```
 ## Notes
 
 - Make sure your system has **NVIDIA drivers and CUDA toolkit** installed for GPU support.
