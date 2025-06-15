@@ -1,1 +1,1 @@
-classifiers images of stress and no stress with efficientnetb0
+classifies images of stress and no stress with efficientnetb0
