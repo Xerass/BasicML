@@ -20,6 +20,27 @@ GENDER_LIST = ['MALE', 'FEMALE']
 #from the caffe model, we need to define the mean pixel intensity of the training data 
 MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
 
+#filter for the goofs
+filter_mode = 'normal'
+
+def apply_filter(frame, filter_mode):
+    if filter_mode == 'gray':
+        return cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    elif filter_mode == 'sepia':
+        sepia = np.array([[0.272, 0.534, 0.131],
+                          [0.349, 0.686, 0.168],
+                          [0.393, 0.769, 0.189]])
+        sepia_img = cv2.transform(frame, sepia)
+    elif filter_mode == 'cartoon':
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = cv2.medianBlur(gray, 5)
+        edges = cv2.adaptiveThreshold(gray, 255,
+                                      cv2.ADAPTIVE_THRESH_MEAN_C,
+                                      cv2.THRESH_BINARY, 9, 9)
+        color = cv2.bilateralFilter(frame, 9, 300, 300)
+        return cv2.bitwise_and(color, color, mask=edges)
+    return frame        
+
 cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 if not cam.isOpened():
@@ -29,7 +50,7 @@ if not cam.isOpened():
 time.sleep(3)
 print("Webcam started successfully.")
 
-print("Press 'q' to quit the webcam.")
+print("Press 'q' to quit | 'g'=gray, 's'=sepia, 'c'=cartoon, 'n'=normal")
 #loop to control frame by frame analysis
 
 
@@ -73,12 +94,23 @@ while True:
         #frame, label, pos, font, scale, color, thickness
         cv2.putText(frame, label, (x,y-10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.8, (0,0,255), 2)
 
-    cv2.imshow("Face Detection with Age and Gender", frame)
+    filtered_frame = apply_filter(frame, filter_mode)
+
+    window_name = "goofy face"
+    cv2.imshow(window_name, filtered_frame)
 
     #wait for 1ms and check if q was pressed
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    key = cv2.waitKey(1) & 0xFF
+    if key == ord('q'):
         print("Quitting webcam.")
         break
-
+    elif key == ord('g'):
+        filter_mode = 'gray'
+    elif key == ord('s'):
+        filter_mode = 'sepia'
+    elif key == ord('c'):
+        filter_mode = 'cartoon'
+    elif key == ord('n'):
+        filter_mode = 'normal'
 cam.release()
 cv2.destroyAllWindows()
