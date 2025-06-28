@@ -95,6 +95,7 @@ while True:
         #frame, label, pos, font, scale, color, thickness
         cv2.putText(frame, label, (x,y-10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.8, (0,0,255), 2)
 
+    #apply the filter to the frame, then use that for imshow
     filtered_frame = apply_filter(frame, filter_mode)
 
     window_name = "goofy face"
