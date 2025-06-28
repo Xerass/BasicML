@@ -23,6 +23,7 @@ MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
 #filter for the goofs
 filter_mode = 'normal'
 
+#function to apply a filter by changing the filter array
 def apply_filter(frame, filter_mode):
     if filter_mode == 'gray':
         return cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
