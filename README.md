@@ -64,7 +64,6 @@ https://drive.google.com/drive/folders/1JaSLUbTYYAylxeb89E48jP7BJJI5WQ6D?usp=sha
 ## Notes
 
 - Make sure your system has **NVIDIA drivers and CUDA toolkit** installed for GPU support.
-- For CPU-only PyTorch, use `pip install torch torchvision torchaudio` without the `--index-url` flag.
 
 ---
 
