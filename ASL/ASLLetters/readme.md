@@ -1,2 +1,3 @@
-an image classifier of ASL letters, utilized mobilenet achieved 100% acc
+an image classifier of ASL letters, utilized mobilenet achieved 100% acc on validation set
+
 
