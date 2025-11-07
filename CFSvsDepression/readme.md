@@ -1,1 +1,1 @@
-Predicts between CFS (Chronic Fatigue Syndrome), Depression, or Both
+Predicts between CFS (Chronic Fatigue Syndrome), Depression, or Both.
