@@ -1,6 +1,6 @@
 # basicML
 
-A student's projects around ML.
+A student's projects around ML. Making a bunch of models on established datasets and other bits and bobs.
 
 ## Libraries & Tools Used
 
